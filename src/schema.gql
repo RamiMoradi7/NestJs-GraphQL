@@ -1,0 +1,92 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Book {
+  _id: ID!
+  name: String!
+  genre: String!
+  publishedYear: String!
+  authorIds: [Author!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Author {
+  _id: ID!
+  name: String!
+  email: String!
+  phone: String!
+  country: String!
+  bookIds: [Book!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Query {
+  authors(params: FindAuthorInput!): [Author!]!
+  author(params: FindAuthorInput!): Author!
+  books(params: FindBookInput!): [Book!]!
+  book(params: FindBookInput!): Book!
+}
+
+input FindAuthorInput {
+  _id: String
+  name: String
+  email: String
+  phone: String
+  country: String
+}
+
+input FindBookInput {
+  _id: String
+  name: String
+  authorIds: [String!]
+  genere: String
+  publishedYear: String
+}
+
+type Mutation {
+  createAuthor(params: CreateAuthorInput!): Author!
+  updateAuthor(id: String!, params: UpdateAuthorInput!): Author!
+  deleteAuthor(id: String!): Author!
+  createBook(params: CreateBookInput!): Book!
+  updateBook(id: String!, params: UpdateBookInput!): Book!
+  deleteBook(id: String!): Book!
+}
+
+input CreateAuthorInput {
+  name: String!
+  email: String!
+  phone: String!
+  country: String!
+}
+
+input UpdateAuthorInput {
+  name: String
+  email: String
+  phone: String
+  country: String
+  bookIds: [ID!]
+}
+
+input CreateBookInput {
+  name: String!
+  genre: String
+  publishedYear: String
+  authorIds: [String!]
+  rentalIds: [ID!]
+}
+
+input UpdateBookInput {
+  name: String
+  genre: String
+  publishedYear: String
+  authorIds: [ID!]
+  rentalIds: [ID!]
+}
